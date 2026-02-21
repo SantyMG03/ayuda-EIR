@@ -1,8 +1,8 @@
 # Asistente Inteligente de Elección de Plazas EIR
 
-Este proyecto es una herramienta de toma de decisiones diseñada para ayudar a enfermer@s residentes (EIR) a elegir su destino ideal de especialidad en España. 
+Este proyecto es una herramienta de toma de decisiones diseñada para ayudar a enfermer@s residentes (EIR) a elegir su destino ideal de especialidad en España. Actualmente la convocatoria de 2026.
 
-La aplicación analiza los datos oficiales del BOE, calcula distancias geográficas en tiempo real y permite ponderar factores económicos y docentes.
+La aplicación analiza los datos oficiales del BOE, calcula distancias geográficas y permite ponderar factores económicos.
 
 ## Funcionalidades clave
 
