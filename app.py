@@ -48,7 +48,20 @@ def cargar_datos():
         
     return df
 
+capitales = [
+    "MADRID", "BARCELONA", "VALENCIA", "SEVILLA", "ZARAGOZA", "MALAGA", "MURCIA", 
+    "PALMA", "LAS PALMAS", "BILBAO", "ALICANTE", "CORDOBA", "VALLADOLID", "VIGO" 
+]
+
+def calcular_bono_acceso(localidad):
+    localidad_clean = localidad.upper().strip()
+    if localidad_clean in capitales:
+        return 10
+    return 5
+
 df_completo = cargar_datos()
+
+df_completo['Calidad de Accesos (1-10)'] = df_completo['Localidad'].apply(calcular_bono_acceso)
 
 # Barra lateral - Interfaz del Usuario
 st.sidebar.header("📍 ¿De dónde eres?")
@@ -68,6 +81,7 @@ st.sidebar.header("⚖️ Tus Prioridades (0-10)")
 peso_distancia = st.sidebar.slider("🚗 Cercanía a mi ciudad", 0, 10, 8)
 #peso_ambiente = st.sidebar.slider("🤝 Buen ambiente (Docencia)", 0, 10, 10)
 peso_alquiler = st.sidebar.slider("💰 Alquiler barato", 0, 10, 5)
+peso_accesos = st.sidebar.slider("🚉 Calidad de accesos", 0, 10, 4)
 
 # --- FILTRAMOS LOS DATOS SEGÚN LO QUE HAYA ELEGIDO EL USUARIO ---
 if not especialidades_elegidas:
@@ -109,8 +123,9 @@ else:
         norm_dist = normalizar_inverso(df['Distancia (km)'])
         #norm_amb = normalizar_directo(df['Nota Ambiente (1-10)'])
         norm_alq = normalizar_inverso(df['Precio Alquiler (€)'])
+        norm_accesos = normalizar_directo(df['Calidad de Accesos (1-10)'])
 
-        df['Puntos'] = (norm_dist * peso_distancia) + (norm_alq * peso_alquiler) #+ (norm_amb * peso_ambiente)
+        df['Puntos'] = (norm_dist * peso_distancia) + (norm_alq * peso_alquiler) + (norm_accesos * peso_accesos) #+ (norm_amb * peso_ambiente)
         df['Score (0-100)'] = ((df['Puntos'] / df['Puntos'].max()) * 100).round(1)
 
         df_ranking = df.sort_values(by='Score (0-100)', ascending=False).reset_index(drop=True)
