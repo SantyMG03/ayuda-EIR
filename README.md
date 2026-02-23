@@ -10,6 +10,7 @@ La aplicación analiza los datos oficiales del BOE, calcula distancias geográfi
 * **Geolocalización Dinámica:** Calcula la distancia exacta (en km) desde la ciudad del usuario hasta cada hospital mediante la API de OpenStreetMap (Nominatim).
 * **Análisis Multicriterio:** Algoritmo que puntúa los destinos (0-100) basándose en:
     * **Proximidad:** Distancia a casa.
+    * **Calidad de accesos:** Las principales ciudades se presusponen con mejores accesos (Trenes, autovías, ...)
     * **Economía:** Estimación del precio de alquiler por provincia.
 * **Interfaz Interactiva:** Desarrollada en Streamlit para una navegación fluida desde PC o móvil.
 
@@ -34,7 +35,7 @@ Si quieres ejecutarlo en tu máquina:
 
 Clona el repositorio:
 ```bash
-   git clone [https://github.com/TU_USUARIO/app-eleccion-eir.git](https://github.com/TU_USUARIO/app-eleccion-eir.git)
+   git clone https://github.com/SantyMG03/ayuda-EIR.git
 ```
 Crea y activa el entorno virtual:
 ```bash
